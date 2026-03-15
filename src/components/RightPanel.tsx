@@ -1,4 +1,22 @@
-const overviewMetrics = [
+import { ReactNode } from 'react'
+import Avatar from './Avatar'
+
+interface OverviewMetric {
+  label: string
+  value: string
+  iconBg: string
+  icon: ReactNode
+}
+
+interface ActivityItem {
+  name: string
+  initials: string
+  avatarColor: string
+  desc: string
+  time: string
+}
+
+const overviewMetrics: OverviewMetric[] = [
   {
     label: 'Active Users',
     value: '2,847',
@@ -44,16 +62,19 @@ const overviewMetrics = [
   },
 ]
 
-const activity = [
+const activity: ActivityItem[] = [
   { name: 'Sarah Johnson', initials: 'SJ', avatarColor: 'bg-[#155dfc]', desc: 'Upgraded to Pro', time: '2m ago' },
-  { name: 'Mike Chen', initials: 'MC', avatarColor: 'bg-[#008236]', desc: 'New signup', time: '15m ago' },
-  { name: 'Emma Wilson', initials: 'EW', avatarColor: 'bg-[#8200db]', desc: 'Payment received', time: '1h ago' },
-  { name: 'Alex Brown', initials: 'AB', avatarColor: 'bg-[#ca3500]', desc: 'Support ticket', time: '2h ago' },
+  { name: 'Mike Chen',     initials: 'MC', avatarColor: 'bg-[#008236]', desc: 'New signup',       time: '15m ago' },
+  { name: 'Emma Wilson',   initials: 'EW', avatarColor: 'bg-[#8200db]', desc: 'Payment received', time: '1h ago' },
+  { name: 'Alex Brown',    initials: 'AB', avatarColor: 'bg-[#ca3500]', desc: 'Support ticket',   time: '2h ago' },
 ]
 
 export default function RightPanel() {
   return (
-    <aside className="w-[270px] min-w-[270px] bg-white border-l border-[#e5e7eb] flex flex-col h-screen overflow-y-auto">
+    <aside className="w-[270px] min-w-[270px] bg-white border-l border-[#e5e7eb] flex flex-col h-screen">
+      {/* Scrollable content */}
+      <div className="flex-1 overflow-y-auto min-h-0">
+
       {/* Overview */}
       <div className="px-6 pt-6 pb-4">
         <h3 className="text-[16px] font-semibold text-[#101828]">Overview</h3>
@@ -85,9 +106,7 @@ export default function RightPanel() {
         <div className="flex flex-col gap-4">
           {activity.map((a) => (
             <div key={a.name} className="flex items-start gap-2.5">
-              <div className={`w-8 h-8 rounded-full ${a.avatarColor} flex items-center justify-center text-[11px] font-bold text-white shrink-0`}>
-                {a.initials}
-              </div>
+              <Avatar initials={a.initials} colorClass={a.avatarColor} />
               <div className="flex flex-col gap-0.5">
                 <span className="text-[14px] font-semibold text-[#101828] leading-5">{a.name}</span>
                 <span className="text-[12px] text-[#6a7282]">{a.desc}</span>
@@ -98,8 +117,10 @@ export default function RightPanel() {
         </div>
       </div>
 
-      {/* Upgrade CTA */}
-      <div className="px-4 pb-6 mt-auto">
+      </div>{/* end scrollable content */}
+
+      {/* Upgrade CTA — anchored to bottom */}
+      <div className="px-4 py-4 border-t border-[#e5e7eb]">
         <div className="bg-gradient-to-br from-[#3b5bdb] to-[#7c3aed] rounded-[12px] p-5">
           <h3 className="text-[15px] font-bold text-white mb-2">Upgrade to Enterprise</h3>
           <p className="text-[13px] text-white/80 mb-4 leading-[18px]">

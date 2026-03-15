@@ -1,4 +1,16 @@
-const navItems = [
+import { ReactNode } from 'react'
+
+interface NavItem {
+  label: string
+  icon: ReactNode
+}
+
+interface SidebarProps {
+  activePage: string
+  setActivePage: (page: string) => void
+}
+
+const navItems: NavItem[] = [
   {
     label: 'Dashboard',
     icon: (
@@ -69,7 +81,7 @@ const navItems = [
   },
 ]
 
-export default function Sidebar({ activePage, setActivePage }) {
+export default function Sidebar({ activePage, setActivePage }: SidebarProps) {
   return (
     <aside className="w-64 min-w-64 bg-[#101828] flex flex-col h-screen overflow-hidden">
       {/* Brand */}
