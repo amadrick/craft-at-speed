@@ -144,7 +144,7 @@ export default function Dashboard() {
       {/* Metric Cards */}
       <div className="flex gap-6">
         {metrics.map((m) => (
-          <div key={m.label} className="card flex-1 p-6 flex flex-col gap-1.5">
+          <div key={m.label} className="card flex-1 p-6 flex flex-col gap-1.5 items-center text-center">
             <div className="w-12 h-12 bg-[#eff6ff] rounded-[10px] flex items-center justify-center mb-2">
               {m.icon}
             </div>
