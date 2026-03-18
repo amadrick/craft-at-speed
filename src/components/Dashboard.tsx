@@ -27,21 +27,21 @@ interface Metric {
 }
 
 const PLAN_STYLES: Record<Plan, string> = {
-  Pro:        'bg-[#dbeafe] text-[#155dfc]',
-  Enterprise: 'bg-[#faf5ff] text-[#8200db]',
-  Starter:    'bg-[#ffedd4] text-[#ca3500]',
+  Pro:        'bg-[#e8eefb] text-[#4b7cf3]',
+  Enterprise: 'bg-[#f3f0fa] text-[#8b5cf6]',
+  Starter:    'bg-[#f5ebe0] text-[#c4784a]',
 }
 
 const STATUS_STYLES: Record<Status, string> = {
-  Active:   'bg-[#dcfce7] text-[#008236]',
+  Active:   'bg-[#e6f4ea] text-[#2e9e5e]',
   Inactive: 'bg-[#f3f4f6] text-[#6a7282]',
 }
 
 const AVATAR_COLORS = [
-  'bg-[#155dfc]',
-  'bg-[#008236]',
-  'bg-[#8200db]',
-  'bg-[#ca3500]',
+  'bg-[#4b7cf3]',
+  'bg-[#2e9e5e]',
+  'bg-[#8b5cf6]',
+  'bg-[#c4784a]',
   'bg-[#0891b2]',
 ] as const
 
@@ -58,7 +58,7 @@ const metrics: Metric[] = [
     change: '+12.5% vs last month',
     positive: true,
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#155dfc" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4b7cf3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <line x1="12" y1="1" x2="12" y2="23" />
         <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
       </svg>
@@ -70,7 +70,7 @@ const metrics: Metric[] = [
     change: '+8.2% vs last month',
     positive: true,
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#155dfc" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4b7cf3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
         <circle cx="9" cy="7" r="4" />
         <path d="M23 21v-2a4 4 0 00-3-3.87" />
@@ -84,7 +84,7 @@ const metrics: Metric[] = [
     change: '+4.3% vs last month',
     positive: true,
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#155dfc" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4b7cf3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
         <polyline points="17 6 23 6 23 12" />
       </svg>
@@ -137,130 +137,134 @@ export default function Dashboard() {
     <main className="flex-1 flex flex-col gap-6 px-8 py-8 overflow-y-auto min-w-0">
       {/* Header */}
       <div>
-        <h1 className="text-[30px] font-bold text-[#101828] leading-9 tracking-[-0.45px]">Dashboard</h1>
-        <p className="text-[14px] text-[#6a7282] mt-1">Welcome back! Here's what's happening with your business.</p>
-      </div>
-
-      {/* Metric Cards */}
-      <div className="flex gap-6">
-        {metrics.map((m) => (
-          <div key={m.label} className="card flex-1 p-6 flex flex-col gap-1.5 items-center text-center">
-            <div className="w-12 h-12 bg-[#eff6ff] rounded-[10px] flex items-center justify-center mb-2">
-              {m.icon}
-            </div>
-            <span className="text-[14px] text-[#6a7282]">{m.label}</span>
-            <span className="text-[30px] font-bold text-[#101828] leading-9 tracking-[-0.45px]">{m.value}</span>
-            <span className={`text-[13px] font-medium ${m.positive ? 'text-[#008236]' : 'text-[#e7000b]'}`}>
-              {m.change}
-            </span>
-          </div>
-        ))}
+        <h1 className="text-[20px] font-semibold text-[#101828] leading-7 tracking-[-0.3px]">Dashboard</h1>
+        <p className="text-[12px] text-[#6a7282] mt-1">Welcome back! Here's what's happening with your business.</p>
       </div>
 
       {/* Revenue Chart */}
       <RevenueChart />
 
-      {/* Customers Table */}
-      <div className="card">
-        <div className="flex items-start justify-between px-6 pt-6 pb-0 gap-4">
+      {/* Metric Cards — below chart */}
+      <div className="flex gap-6">
+        {metrics.map((m) => (
+          <div key={m.label} className="card flex-1 p-4 flex items-start gap-3">
+            <div className="w-7 h-7 bg-[#edf2fb] rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+              {m.icon}
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <span className="text-[12px] text-[#6a7282]">{m.label}</span>
+              <span className="text-[20px] font-semibold text-[#101828] leading-6 tracking-[-0.3px]">{m.value}</span>
+              <span className={`text-[12px] font-medium ${m.positive ? 'text-[#2e9e5e]' : 'text-[#d97777]'}`}>
+                {m.change}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Customers Table — no card wrapper */}
+      <div className="min-w-0">
+        <div className="flex items-start justify-between pb-0 gap-4">
           <div>
-            <h2 className="text-[18px] font-semibold text-[#101828]">Customers</h2>
-            <p className="text-[14px] text-[#6a7282] mt-1">Manage your customer accounts and subscriptions</p>
+            <h2 className="text-[14px] font-semibold text-[#101828]">Customers</h2>
+            <p className="text-[12px] text-[#6a7282] mt-0.5">Manage your customer accounts and subscriptions</p>
           </div>
           <button
             onClick={() => setShowModal(true)}
-            className="bg-[#155dfc] text-white rounded-[10px] px-5 py-2.5 text-[14px] font-semibold shrink-0 hover:bg-[#1447e6] transition-colors mt-1"
+            className="border border-[#e5e7eb] text-[#4a5565] rounded-[10px] px-5 py-2 text-[12px] font-medium shrink-0 hover:bg-[#f9fafb] transition-colors"
           >
             Add Customer
           </button>
         </div>
 
-        <table className="w-full border-collapse mt-4">
-          <thead>
-            <tr>
-              {COLUMNS.map((col) => (
-                <th key={col} className="text-left px-6 py-2.5 text-[12px] font-semibold text-[#6a7282] tracking-[0.6px] border-b border-[#e5e7eb] bg-[#f9fafb]">
-                  {col}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-[#e5e7eb]">
-            {customers.map((c) => (
-              <tr key={c.id} className="hover:bg-[#f9fafb] transition-colors">
-                <td className="px-6 py-3.5 text-[14px] text-[#101828]">
-                  <div className="flex items-center gap-2.5 font-medium">
-                    <Avatar initials={c.initials} colorClass={c.avatarColor} />
-                    {c.name}
-                  </div>
-                </td>
-                <td className="px-6 py-3.5 text-[14px]">
-                  <span className={`inline-block px-2.5 py-0.5 rounded-full text-[12px] font-medium ${PLAN_STYLES[c.plan]}`}>
-                    {c.plan}
-                  </span>
-                </td>
-                <td className="px-6 py-3.5 text-[14px]">
-                  <span className={`inline-block px-2.5 py-0.5 rounded-full text-[12px] font-medium ${STATUS_STYLES[c.status]}`}>
-                    {c.status}
-                  </span>
-                </td>
-                <td className="px-6 py-3.5 text-[14px] text-[#101828]">{c.revenue}</td>
-                <td className={`px-6 py-3.5 text-[14px] font-medium ${c.positive ? 'text-[#008236]' : 'text-[#e7000b]'}`}>
-                  {c.change}
-                </td>
+        <div className="overflow-x-auto mt-4">
+          <table className="w-full border-collapse min-w-[600px]">
+            <thead>
+              <tr>
+                {COLUMNS.map((col) => (
+                  <th key={col} className="text-left px-6 py-2.5 text-[12px] font-semibold text-[#6a7282] tracking-[0.6px] border-b border-[#e5e7eb] bg-[#f9fafb]">
+                    {col}
+                  </th>
+                ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-[#e5e7eb]">
+              {customers.map((c) => (
+                <tr key={c.id} className="hover:bg-[#f9fafb] transition-colors">
+                  <td className="px-6 py-3.5 text-[14px] text-[#101828]">
+                    <div className="flex items-center gap-2.5 font-medium whitespace-nowrap">
+                      <Avatar initials={c.initials} colorClass={c.avatarColor} />
+                      <span className="truncate">{c.name}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-3.5 text-[14px]">
+                    <span className={`inline-block px-2.5 py-0.5 rounded-full text-[12px] font-medium ${PLAN_STYLES[c.plan]}`}>
+                      {c.plan}
+                    </span>
+                  </td>
+                  <td className="px-6 py-3.5 text-[14px]">
+                    <span className={`inline-block px-2.5 py-0.5 rounded-full text-[12px] font-medium ${STATUS_STYLES[c.status]}`}>
+                      {c.status}
+                    </span>
+                  </td>
+                  <td className="px-6 py-3.5 text-[14px] text-[#101828]">{c.revenue}</td>
+                  <td className={`px-6 py-3.5 text-[14px] font-medium ${c.positive ? 'text-[#2e9e5e]' : 'text-[#d97777]'}`}>
+                    {c.change}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {/* Add Customer Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50" onClick={() => setShowModal(false)}>
           <div className="bg-white rounded-[12px] p-6 w-[420px] shadow-xl" onClick={(e) => e.stopPropagation()}>
-            <h2 className="text-[18px] font-semibold text-[#101828] mb-5">Add Customer</h2>
+            <h2 className="text-[14px] font-semibold text-[#101828] mb-5">Add Customer</h2>
             <form onSubmit={handleAddCustomer} className="flex flex-col gap-4">
               <div>
-                <label className="block text-[13px] font-medium text-[#4a5565] mb-1">Full Name</label>
+                <label className="block text-[12px] font-medium text-[#4a5565] mb-1">Full Name</label>
                 <input
                   type="text"
                   placeholder="e.g. Jane Smith"
                   value={form.name}
                   onChange={e => setForm({ ...form, name: e.target.value })}
-                  className="w-full border border-[#e5e7eb] rounded-[8px] px-3 py-2 text-[14px] text-[#101828] outline-none focus:border-[#155dfc] focus:ring-2 focus:ring-[#155dfc]/20"
+                  className="w-full border border-[#e5e7eb] rounded-[8px] px-3 py-2 text-[14px] text-[#101828] outline-none focus:border-[#4b7cf3] focus:ring-2 focus:ring-[#4b7cf3]/20"
                   required
                 />
               </div>
               <div className="flex gap-3">
                 <div className="flex-1">
-                  <label className="block text-[13px] font-medium text-[#4a5565] mb-1">Plan</label>
+                  <label className="block text-[12px] font-medium text-[#4a5565] mb-1">Plan</label>
                   <select
                     value={form.plan}
                     onChange={e => setForm({ ...form, plan: e.target.value as Plan })}
-                    className="w-full border border-[#e5e7eb] rounded-[8px] px-3 py-2 text-[14px] text-[#101828] outline-none focus:border-[#155dfc] focus:ring-2 focus:ring-[#155dfc]/20 bg-white"
+                    className="w-full border border-[#e5e7eb] rounded-[8px] px-3 py-2 text-[14px] text-[#101828] outline-none focus:border-[#4b7cf3] focus:ring-2 focus:ring-[#4b7cf3]/20 bg-white"
                   >
                     {(Object.keys(PLAN_STYLES) as Plan[]).map(plan => <option key={plan}>{plan}</option>)}
                   </select>
                 </div>
                 <div className="flex-1">
-                  <label className="block text-[13px] font-medium text-[#4a5565] mb-1">Status</label>
+                  <label className="block text-[12px] font-medium text-[#4a5565] mb-1">Status</label>
                   <select
                     value={form.status}
                     onChange={e => setForm({ ...form, status: e.target.value as Status })}
-                    className="w-full border border-[#e5e7eb] rounded-[8px] px-3 py-2 text-[14px] text-[#101828] outline-none focus:border-[#155dfc] focus:ring-2 focus:ring-[#155dfc]/20 bg-white"
+                    className="w-full border border-[#e5e7eb] rounded-[8px] px-3 py-2 text-[14px] text-[#101828] outline-none focus:border-[#4b7cf3] focus:ring-2 focus:ring-[#4b7cf3]/20 bg-white"
                   >
                     {(Object.keys(STATUS_STYLES) as Status[]).map(status => <option key={status}>{status}</option>)}
                   </select>
                 </div>
               </div>
               <div>
-                <label className="block text-[13px] font-medium text-[#4a5565] mb-1">Revenue</label>
+                <label className="block text-[12px] font-medium text-[#4a5565] mb-1">Revenue</label>
                 <input
                   type="text"
                   placeholder="e.g. $1,200"
                   value={form.revenue}
                   onChange={e => setForm({ ...form, revenue: e.target.value })}
-                  className="w-full border border-[#e5e7eb] rounded-[8px] px-3 py-2 text-[14px] text-[#101828] outline-none focus:border-[#155dfc] focus:ring-2 focus:ring-[#155dfc]/20"
+                  className="w-full border border-[#e5e7eb] rounded-[8px] px-3 py-2 text-[14px] text-[#101828] outline-none focus:border-[#4b7cf3] focus:ring-2 focus:ring-[#4b7cf3]/20"
                   required
                 />
               </div>
@@ -274,7 +278,7 @@ export default function Dashboard() {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 bg-[#155dfc] text-white rounded-[8px] py-2.5 text-[14px] font-semibold hover:bg-[#1447e6] transition-colors"
+                  className="flex-1 bg-[#4b7cf3] text-white rounded-[8px] py-2.5 text-[14px] font-semibold hover:bg-[#3d6de0] transition-colors"
                 >
                   Add Customer
                 </button>

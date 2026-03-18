@@ -20,9 +20,9 @@ const overviewMetrics: OverviewMetric[] = [
   {
     label: 'Active Users',
     value: '2,847',
-    iconBg: 'bg-[#eff6ff]',
+    iconBg: 'bg-[#edf2fb]',
     icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#155dfc" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4b7cf3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
       </svg>
     ),
@@ -30,9 +30,9 @@ const overviewMetrics: OverviewMetric[] = [
   {
     label: 'Avg. Session',
     value: '12m 34s',
-    iconBg: 'bg-[#ffedd4]',
+    iconBg: 'bg-[#f5ebe0]',
     icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ca3500" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c4784a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10" />
         <polyline points="12 6 12 12 16 14" />
       </svg>
@@ -41,9 +41,9 @@ const overviewMetrics: OverviewMetric[] = [
   {
     label: 'Conversion',
     value: '4.2%',
-    iconBg: 'bg-[#dcfce7]',
+    iconBg: 'bg-[#e6f4ea]',
     icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#008236" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e9e5e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
         <polyline points="17 6 23 6 23 12" />
       </svg>
@@ -52,9 +52,9 @@ const overviewMetrics: OverviewMetric[] = [
   {
     label: 'Revenue/User',
     value: '$89.42',
-    iconBg: 'bg-[#ffedd4]',
+    iconBg: 'bg-[#f5ebe0]',
     icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ca3500" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c4784a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <line x1="12" y1="1" x2="12" y2="23" />
         <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
       </svg>
@@ -63,10 +63,10 @@ const overviewMetrics: OverviewMetric[] = [
 ]
 
 const activity: ActivityItem[] = [
-  { name: 'Sarah Johnson', initials: 'SJ', avatarColor: 'bg-[#155dfc]', desc: 'Upgraded to Pro', time: '2m ago' },
-  { name: 'Mike Chen',     initials: 'MC', avatarColor: 'bg-[#008236]', desc: 'New signup',       time: '15m ago' },
-  { name: 'Emma Wilson',   initials: 'EW', avatarColor: 'bg-[#8200db]', desc: 'Payment received', time: '1h ago' },
-  { name: 'Alex Brown',    initials: 'AB', avatarColor: 'bg-[#ca3500]', desc: 'Support ticket',   time: '2h ago' },
+  { name: 'Sarah Johnson', initials: 'SJ', avatarColor: 'bg-[#4b7cf3]', desc: 'Upgraded to Pro', time: '2m ago' },
+  { name: 'Mike Chen',     initials: 'MC', avatarColor: 'bg-[#2e9e5e]', desc: 'New signup',       time: '15m ago' },
+  { name: 'Emma Wilson',   initials: 'EW', avatarColor: 'bg-[#8b5cf6]', desc: 'Payment received', time: '1h ago' },
+  { name: 'Alex Brown',    initials: 'AB', avatarColor: 'bg-[#c4784a]', desc: 'Support ticket',   time: '2h ago' },
 ]
 
 export default function RightPanel() {
@@ -77,7 +77,7 @@ export default function RightPanel() {
 
       {/* Overview */}
       <div className="px-6 pt-6 pb-4">
-        <h3 className="text-[16px] font-semibold text-[#101828]">Overview</h3>
+        <h3 className="text-[14px] font-semibold text-[#101828]">Overview</h3>
         <p className="text-[12px] text-[#99a1af] mt-0.5 mb-4">Real-time metrics</p>
 
         <div className="flex flex-col">
@@ -91,7 +91,7 @@ export default function RightPanel() {
               </div>
               <div className="flex flex-col gap-0.5">
                 <span className="text-[12px] text-[#6a7282]">{m.label}</span>
-                <span className="text-[16px] font-bold text-[#101828] leading-tight">{m.value}</span>
+                <span className="text-[14px] font-semibold text-[#101828] leading-tight">{m.value}</span>
               </div>
             </div>
           ))}
@@ -102,13 +102,13 @@ export default function RightPanel() {
 
       {/* Recent Activity */}
       <div className="px-6 py-6">
-        <h3 className="text-[16px] font-semibold text-[#101828] mb-4">Recent Activity</h3>
+        <h3 className="text-[14px] font-semibold text-[#101828] mb-4">Recent Activity</h3>
         <div className="flex flex-col gap-4">
           {activity.map((a) => (
             <div key={a.name} className="flex items-start gap-2.5">
               <Avatar initials={a.initials} colorClass={a.avatarColor} />
-              <div className="flex flex-col gap-0.5">
-                <span className="text-[14px] font-semibold text-[#101828] leading-5">{a.name}</span>
+              <div className="flex flex-col gap-0.5 min-w-0">
+                <span className="text-[12px] font-semibold text-[#101828] leading-5 truncate">{a.name}</span>
                 <span className="text-[12px] text-[#6a7282]">{a.desc}</span>
                 <span className="text-[12px] text-[#99a1af]">{a.time}</span>
               </div>
@@ -118,19 +118,6 @@ export default function RightPanel() {
       </div>
 
       </div>{/* end scrollable content */}
-
-      {/* Upgrade CTA — anchored to bottom */}
-      <div className="px-4 py-4 border-t border-[#e5e7eb]">
-        <div className="bg-gradient-to-br from-[#3b5bdb] to-[#7c3aed] rounded-[12px] p-5">
-          <h3 className="text-[15px] font-bold text-white mb-2">Upgrade to Enterprise</h3>
-          <p className="text-[13px] text-white/80 mb-4 leading-[18px]">
-            Get advanced analytics and priority support
-          </p>
-          <button className="block w-full bg-white text-[#3b5bdb] rounded-[8px] py-2.5 text-[14px] font-semibold hover:bg-white/90 transition-colors">
-            Learn More
-          </button>
-        </div>
-      </div>
     </aside>
   )
 }

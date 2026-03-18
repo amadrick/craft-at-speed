@@ -13,8 +13,7 @@ const options: Highcharts.Options = {
   legend: { enabled: false },
   xAxis: {
     categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
-    gridLineColor: '#f3f4f6',
-    gridLineWidth: 1,
+    gridLineWidth: 0,
     lineColor: 'transparent',
     tickLength: 0,
     labels: { style: { color: '#99a1af', fontSize: '12px' } },
@@ -24,13 +23,8 @@ const options: Highcharts.Options = {
     min: 0,
     max: 80000,
     tickInterval: 20000,
-    gridLineColor: '#f3f4f6',
-    labels: {
-      style: { color: '#99a1af', fontSize: '12px' },
-      formatter() {
-        return `$${(this.value as number) / 1000}k`
-      },
-    },
+    gridLineWidth: 0,
+    labels: { enabled: false },
   },
   tooltip: {
     backgroundColor: 'white',
@@ -48,11 +42,11 @@ const options: Highcharts.Options = {
       fillColor: {
         linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
         stops: [
-          [0, 'rgba(21, 93, 252, 0.18)'],
-          [1, 'rgba(21, 93, 252, 0.0)'],
+          [0, 'rgba(75, 124, 243, 0.18)'],
+          [1, 'rgba(75, 124, 243, 0.0)'],
         ],
       },
-      lineColor: '#155dfc',
+      lineColor: '#4b7cf3',
       lineWidth: 2,
       marker: {
         enabled: false,
@@ -60,7 +54,7 @@ const options: Highcharts.Options = {
           hover: {
             enabled: true,
             radius: 5,
-            fillColor: '#155dfc',
+            fillColor: '#4b7cf3',
             lineColor: 'white',
             lineWidth: 2,
           },
@@ -76,12 +70,12 @@ const options: Highcharts.Options = {
 
 export default function RevenueChart() {
   return (
-    <div className="card">
-      <div className="px-6 pt-6 pb-0">
-        <h2 className="text-[18px] font-semibold text-[#101828]">Revenue Overview</h2>
-        <p className="text-[14px] text-[#6a7282] mt-1">Monthly recurring revenue trend</p>
+    <div>
+      <div className="mb-3">
+        <h2 className="text-[16px] font-semibold text-[#101828]">Revenue Overview</h2>
+        <p className="text-[13px] text-[#6a7282] mt-0.5">Monthly recurring revenue trend</p>
       </div>
-      <div className="px-6 pt-5 pb-6">
+      <div className="-mx-8">
         <HighchartsReact highcharts={Highcharts} options={options} />
       </div>
     </div>

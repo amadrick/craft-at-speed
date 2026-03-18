@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import Avatar from './Avatar'
 
 interface NavItem {
   label: string
@@ -8,6 +9,8 @@ interface NavItem {
 interface SidebarProps {
   activePage: string
   setActivePage: (page: string) => void
+  collapsed: boolean
+  onToggleCollapse: () => void
 }
 
 const navItems: NavItem[] = [
@@ -81,12 +84,12 @@ const navItems: NavItem[] = [
   },
 ]
 
-export default function Sidebar({ activePage, setActivePage }: SidebarProps) {
+export default function Sidebar({ activePage, setActivePage, collapsed, onToggleCollapse }: SidebarProps) {
   return (
-    <aside className="w-64 min-w-64 bg-[#101828] flex flex-col h-screen overflow-hidden">
+    <aside className={`${collapsed ? 'w-16 min-w-16' : 'w-64 min-w-64'} bg-[#f9fafb] flex flex-col h-screen overflow-hidden transition-all duration-200`}>
       {/* Brand */}
-      <div className="flex items-center gap-3 px-5 py-6 border-b border-[#1e2939]">
-        <div className="w-10 h-10 bg-[#155dfc] rounded-[10px] flex items-center justify-center shrink-0">
+      <div className={`flex items-center gap-3 ${collapsed ? 'px-3 justify-center' : 'px-5'} py-6 border-b border-[#e5e7eb]`}>
+        <div className="w-10 h-10 bg-[#4b7cf3] rounded-[10px] flex items-center justify-center shrink-0">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <rect x="3" y="3" width="7" height="7" rx="1.5" />
             <rect x="14" y="3" width="7" height="7" rx="1.5" />
@@ -94,14 +97,16 @@ export default function Sidebar({ activePage, setActivePage }: SidebarProps) {
             <rect x="14" y="14" width="7" height="7" rx="1.5" />
           </svg>
         </div>
-        <div className="flex flex-col gap-1 min-w-0">
-          <span className="text-[15px] font-semibold text-white leading-none whitespace-nowrap">
-            SaaS Dashboard
-          </span>
-          <span className="text-[11px] font-medium text-[#8200db] bg-[#faf5ff] rounded-full px-2 py-0.5 leading-none whitespace-nowrap inline-block w-fit">
-            Enterprise Plan
-          </span>
-        </div>
+        {!collapsed && (
+          <div className="flex flex-col gap-1 min-w-0">
+            <span className="text-[14px] font-semibold text-[#101828] leading-none whitespace-nowrap">
+              SaaS Dashboard
+            </span>
+            <span className="text-[12px] font-medium text-[#8b5cf6] bg-[#f3f0fa] rounded-full px-2 py-0.5 leading-none whitespace-nowrap inline-block w-fit">
+              Enterprise Plan
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Nav */}
@@ -110,29 +115,47 @@ export default function Sidebar({ activePage, setActivePage }: SidebarProps) {
           <button
             key={label}
             onClick={() => setActivePage(label)}
-            className={`flex items-center gap-3 px-3 py-2.5 rounded-[10px] text-[14px] font-medium w-full text-left transition-colors ${
+            title={collapsed ? label : undefined}
+            className={`flex items-center gap-3 ${collapsed ? 'justify-center px-0' : 'px-3'} py-2.5 rounded-[10px] text-[14px] font-medium w-full text-left transition-colors ${
               activePage === label
-                ? 'bg-[#155dfc] text-white'
-                : 'text-[#99a1af] hover:bg-white/[0.06] hover:text-[#d1d5dc]'
+                ? 'bg-[#e5e7eb] text-[#101828]'
+                : 'text-[#6a7282] hover:bg-[#e5e7eb] hover:text-[#101828]'
             }`}
           >
-            {icon}
-            {label}
+            <span className="shrink-0">{icon}</span>
+            {!collapsed && label}
           </button>
         ))}
       </nav>
 
+      {/* Collapse toggle */}
+      <div className={`px-3 pb-2 ${collapsed ? 'flex justify-center' : ''}`}>
+        <button
+          onClick={onToggleCollapse}
+          className="flex items-center justify-center w-full py-2 rounded-[10px] text-[#6a7282] hover:bg-[#e5e7eb] hover:text-[#101828] transition-colors"
+          title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            {collapsed ? (
+              <polyline points="9 18 15 12 9 6" />
+            ) : (
+              <polyline points="15 18 9 12 15 6" />
+            )}
+          </svg>
+        </button>
+      </div>
+
       {/* User */}
-      <div className="flex items-center gap-3 px-5 py-4 border-t border-[#1e2939]">
-        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#155dfc] to-[#8200db] flex items-center justify-center text-[12px] font-bold text-white shrink-0">
-          JD
-        </div>
-        <div className="flex flex-col gap-0.5 min-w-0">
-          <span className="text-[14px] font-semibold text-white whitespace-nowrap">John Doe</span>
-          <span className="text-[12px] text-[#99a1af] whitespace-nowrap overflow-hidden text-ellipsis">
-            john@company.com
-          </span>
-        </div>
+      <div className={`flex items-center gap-3 ${collapsed ? 'px-3 justify-center' : 'px-5'} py-4 border-t border-[#e5e7eb]`}>
+        <Avatar initials="JD" colorClass="bg-gradient-to-br from-[#4b7cf3] to-[#8b5cf6]" size="lg" />
+        {!collapsed && (
+          <div className="flex flex-col gap-0.5 min-w-0">
+            <span className="text-[14px] font-semibold text-[#101828] whitespace-nowrap">John Doe</span>
+            <span className="text-[12px] text-[#6a7282] whitespace-nowrap overflow-hidden text-ellipsis">
+              john@company.com
+            </span>
+          </div>
+        )}
       </div>
     </aside>
   )
