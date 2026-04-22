@@ -7,7 +7,7 @@ export default function App() {
   const [activePage, setActivePage] = useState('Dashboard')
 
   return (
-    <div className="flex h-screen overflow-hidden bg-[#f9fafb]">
+    <div className="flex h-screen overflow-hidden bg-z-1">
       <Sidebar activePage={activePage} setActivePage={setActivePage} />
       <Dashboard />
       <RightPanel />

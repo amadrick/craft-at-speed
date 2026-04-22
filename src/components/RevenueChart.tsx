@@ -1,6 +1,15 @@
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 
+const Z = {
+  z2: '#f5f5f5',
+  z3: '#ebebeb',
+  z5: '#a3a3a3',
+  z6: '#666666',
+  z7: '#292929',
+  blue9: '#1074d9',
+} as const
+
 const options: Highcharts.Options = {
   chart: {
     type: 'areaspline',
@@ -13,20 +22,20 @@ const options: Highcharts.Options = {
   legend: { enabled: false },
   xAxis: {
     categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
-    gridLineColor: '#f3f4f6',
+    gridLineColor: Z.z2,
     gridLineWidth: 1,
     lineColor: 'transparent',
     tickLength: 0,
-    labels: { style: { color: '#99a1af', fontSize: '12px' } },
+    labels: { style: { color: Z.z5, fontSize: '12px' } },
   },
   yAxis: {
     title: { text: undefined },
     min: 0,
     max: 80000,
     tickInterval: 20000,
-    gridLineColor: '#f3f4f6',
+    gridLineColor: Z.z2,
     labels: {
-      style: { color: '#99a1af', fontSize: '12px' },
+      style: { color: Z.z5, fontSize: '12px' },
       formatter() {
         return `$${(this.value as number) / 1000}k`
       },
@@ -34,11 +43,11 @@ const options: Highcharts.Options = {
   },
   tooltip: {
     backgroundColor: 'white',
-    borderColor: '#e5e7eb',
+    borderColor: Z.z3,
     borderWidth: 1,
     shadow: false,
-    style: { color: '#6a7282' },
-    headerFormat: '<span style="color:#101828;font-weight:600">{point.key}</span><br/>',
+    style: { color: Z.z6 },
+    headerFormat: `<span style="color:${Z.z7};font-weight:600">{point.key}</span><br/>`,
     pointFormatter() {
       return `$${this.y!.toLocaleString()}`
     },
@@ -48,11 +57,11 @@ const options: Highcharts.Options = {
       fillColor: {
         linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
         stops: [
-          [0, 'rgba(21, 93, 252, 0.18)'],
-          [1, 'rgba(21, 93, 252, 0.0)'],
+          [0, 'rgba(16, 116, 217, 0.18)'],
+          [1, 'rgba(16, 116, 217, 0.0)'],
         ],
       },
-      lineColor: '#155dfc',
+      lineColor: Z.blue9,
       lineWidth: 2,
       marker: {
         enabled: false,
@@ -60,7 +69,7 @@ const options: Highcharts.Options = {
           hover: {
             enabled: true,
             radius: 5,
-            fillColor: '#155dfc',
+            fillColor: Z.blue9,
             lineColor: 'white',
             lineWidth: 2,
           },
@@ -78,8 +87,8 @@ export default function RevenueChart() {
   return (
     <div className="card">
       <div className="px-6 pt-6 pb-0">
-        <h2 className="text-[18px] font-semibold text-[#101828]">Revenue Overview</h2>
-        <p className="text-[14px] text-[#6a7282] mt-1">Monthly recurring revenue trend</p>
+        <h2 className="text-[18px] font-semibold text-z-7">Revenue Overview</h2>
+        <p className="text-body leading-body tracking-body text-z-6 mt-1">Monthly recurring revenue trend</p>
       </div>
       <div className="px-6 pt-5 pb-6">
         <HighchartsReact highcharts={Highcharts} options={options} />
