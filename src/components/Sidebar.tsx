@@ -110,10 +110,10 @@ export default function Sidebar({ activePage, setActivePage }: SidebarProps) {
       {/* Header */}
       <div className="flex items-center justify-between px-3 h-11 shrink-0">
         <div className="flex items-center gap-1.5 px-[5px] py-0.5 rounded-[6px]">
-          <div className="w-[18px] h-[18px] rounded-full bg-gradient-to-br from-blue-9 to-[#8200db] flex items-center justify-center overflow-hidden shrink-0">
+          <div className="w-[18px] h-[18px] rounded-full bg-blue-9 flex items-center justify-center overflow-hidden shrink-0">
             <span className="text-[8px] font-bold text-white leading-none">JD</span>
           </div>
-          <span className="text-body leading-body tracking-body font-[450] text-t-12 whitespace-nowrap">
+          <span className="text-body leading-body tracking-body font-[450] text-t-11 whitespace-nowrap">
             John D.
           </span>
         </div>
@@ -153,8 +153,8 @@ export default function Sidebar({ activePage, setActivePage }: SidebarProps) {
                 onClick={() => setActivePage(item.label)}
                 className={`flex items-center gap-1.5 h-8 overflow-hidden px-[7px] py-1 rounded-[6px] w-full text-left transition-colors ${
                   activePage === item.label
-                    ? 'bg-t-3 text-t-12'
-                    : 'text-t-12 hover:bg-t-1 hover:text-t-11'
+                    ? 'bg-t-3 text-t-11'
+                    : 'text-t-11 hover:bg-t-1 hover:text-t-9'
                 }`}
               >
                 <div className="w-4 h-4 flex items-center justify-center shrink-0">
