@@ -7,7 +7,7 @@ const Z = {
   z5: '#a3a3a3',
   z6: '#666666',
   z7: '#292929',
-  blue9: '#1074d9',
+  accent: '#80bfff',
 } as const
 
 const options: Highcharts.Options = {
@@ -22,8 +22,7 @@ const options: Highcharts.Options = {
   legend: { enabled: false },
   xAxis: {
     categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
-    gridLineColor: Z.z2,
-    gridLineWidth: 1,
+    gridLineWidth: 0,
     lineColor: 'transparent',
     tickLength: 0,
     labels: { style: { color: Z.z5, fontSize: '12px' } },
@@ -33,7 +32,7 @@ const options: Highcharts.Options = {
     min: 0,
     max: 80000,
     tickInterval: 20000,
-    gridLineColor: Z.z2,
+    gridLineWidth: 0,
     labels: {
       style: { color: Z.z5, fontSize: '12px' },
       formatter() {
@@ -57,11 +56,11 @@ const options: Highcharts.Options = {
       fillColor: {
         linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
         stops: [
-          [0, 'rgba(16, 116, 217, 0.18)'],
-          [1, 'rgba(16, 116, 217, 0.0)'],
+          [0, 'rgba(128, 191, 255, 0.15)'],
+          [1, 'rgba(128, 191, 255, 0.0)'],
         ],
       },
-      lineColor: Z.blue9,
+      lineColor: Z.accent,
       lineWidth: 2,
       marker: {
         enabled: false,
@@ -69,7 +68,7 @@ const options: Highcharts.Options = {
           hover: {
             enabled: true,
             radius: 5,
-            fillColor: Z.blue9,
+            fillColor: Z.accent,
             lineColor: 'white',
             lineWidth: 2,
           },
@@ -85,12 +84,12 @@ const options: Highcharts.Options = {
 
 export default function RevenueChart() {
   return (
-    <div className="card">
-      <div className="px-6 pt-6 pb-0">
-        <h2 className="text-[18px] font-semibold text-z-7">Revenue Overview</h2>
+    <div>
+      <div className="pb-0">
+        <h2 className="text-title leading-title tracking-title font-semibold text-z-7">Revenue Overview</h2>
         <p className="text-body leading-body tracking-body text-z-6 mt-1">Monthly recurring revenue trend</p>
       </div>
-      <div className="px-6 pt-5 pb-6">
+      <div className="pt-5 pb-2">
         <HighchartsReact highcharts={Highcharts} options={options} />
       </div>
     </div>
