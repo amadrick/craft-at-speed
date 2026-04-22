@@ -1,5 +1,5 @@
-import { useState, ReactNode } from 'react'
-import { PeopleIcon, ArrowTopRightIcon } from './icons'
+import { useState } from 'react'
+import { ReactNode } from 'react'
 import Avatar from './Avatar'
 import RevenueChart from './RevenueChart'
 
@@ -69,14 +69,26 @@ const metrics: Metric[] = [
     value: '2,847',
     change: '+8.2% vs last month',
     positive: true,
-    icon: <PeopleIcon size={24} className="text-[#1074d9]" />,
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1074d9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M23 21v-2a4 4 0 00-3-3.87" />
+        <path d="M16 3.13a4 4 0 010 7.75" />
+      </svg>
+    ),
   },
   {
     label: 'Growth Rate',
     value: '23.1%',
     change: '+4.3% vs last month',
     positive: true,
-    icon: <ArrowTopRightIcon size={24} className="text-[#1074d9]" />,
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1074d9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+        <polyline points="17 6 23 6 23 12" />
+      </svg>
+    ),
   },
 ]
 
@@ -125,7 +137,7 @@ export default function Dashboard() {
     <main className="flex-1 flex flex-col gap-6 px-8 py-8 overflow-y-auto min-w-0 overflow-x-hidden">
       {/* Header */}
       <div className="min-w-0">
-        <h1 className="text-[30px] font-bold text-z-7 leading-9 tracking-[-0.45px] truncate">Dashboard</h1>
+        <h1 className="text-title leading-title tracking-title font-bold text-z-7 truncate">Dashboard</h1>
         <p className="text-body leading-body tracking-body text-z-6 mt-1">Welcome back! Here's what's happening with your business.</p>
       </div>
 
@@ -137,7 +149,7 @@ export default function Dashboard() {
               {m.icon}
             </div>
             <span className="text-body leading-body tracking-body text-z-6 truncate w-full">{m.label}</span>
-            <span className="text-[30px] font-bold text-z-7 leading-9 tracking-[-0.45px] truncate w-full">{m.value}</span>
+            <span className="text-title leading-title tracking-title font-bold text-z-7 truncate w-full">{m.value}</span>
             <span className={`text-body leading-body tracking-body font-medium truncate w-full ${m.positive ? 'text-green' : 'text-red'}`}>
               {m.change}
             </span>
@@ -152,7 +164,7 @@ export default function Dashboard() {
       <div className="card min-w-0">
         <div className="flex items-start justify-between px-6 pt-6 pb-0 gap-4">
           <div className="min-w-0">
-            <h2 className="text-[18px] font-semibold text-z-7 truncate">Customers</h2>
+            <h2 className="text-title leading-title tracking-title font-semibold text-z-7 truncate">Customers</h2>
             <p className="text-body leading-body tracking-body text-z-6 mt-1 truncate">Manage your customer accounts and subscriptions</p>
           </div>
           <button
@@ -208,7 +220,7 @@ export default function Dashboard() {
       {showModal && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4" onClick={() => setShowModal(false)}>
           <div className="bg-z-0 rounded-lg p-6 w-full max-w-[420px] shadow-xl" onClick={(e) => e.stopPropagation()}>
-            <h2 className="text-[18px] font-semibold text-z-7 mb-5">Add Customer</h2>
+            <h2 className="text-title leading-title tracking-title font-semibold text-z-7 mb-5">Add Customer</h2>
             <form onSubmit={handleAddCustomer} className="flex flex-col gap-4">
               <div>
                 <label className="block text-body leading-body tracking-body font-medium text-z-6 mb-1">Full Name</label>

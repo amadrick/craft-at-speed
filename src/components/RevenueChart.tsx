@@ -87,7 +87,7 @@ export default function RevenueChart() {
   return (
     <div className="card">
       <div className="px-6 pt-6 pb-0">
-        <h2 className="text-[18px] font-semibold text-z-7">Revenue Overview</h2>
+        <h2 className="text-title leading-title tracking-title font-semibold text-z-7">Revenue Overview</h2>
         <p className="text-body leading-body tracking-body text-z-6 mt-1">Monthly recurring revenue trend</p>
       </div>
       <div className="px-6 pt-5 pb-6">

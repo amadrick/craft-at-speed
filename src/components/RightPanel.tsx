@@ -1,5 +1,4 @@
 import { ReactNode } from 'react'
-import { EngagementAnalyticsIcon, ClockIcon, ArrowTopRightIcon } from './icons'
 import Avatar from './Avatar'
 
 interface OverviewMetric {
@@ -22,19 +21,33 @@ const overviewMetrics: OverviewMetric[] = [
     label: 'Active Users',
     value: '2,847',
     iconBg: 'bg-blue-0',
-    icon: <EngagementAnalyticsIcon size={16} className="text-[#1074d9]" />,
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1074d9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+      </svg>
+    ),
   },
   {
     label: 'Avg. Session',
     value: '12m 34s',
     iconBg: 'bg-[#ffedd4]',
-    icon: <ClockIcon size={16} className="text-[#ffa238]" />,
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffa238" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <polyline points="12 6 12 12 16 14" />
+      </svg>
+    ),
   },
   {
     label: 'Conversion',
     value: '4.2%',
     iconBg: 'bg-[#dcfce7]',
-    icon: <ArrowTopRightIcon size={16} className="text-[#49bf4c]" />,
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#49bf4c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+        <polyline points="17 6 23 6 23 12" />
+      </svg>
+    ),
   },
   {
     label: 'Revenue/User',

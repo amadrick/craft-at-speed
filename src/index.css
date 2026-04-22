@@ -49,20 +49,20 @@
   --color-orange: #ffa238;
 
   /* === Typography === */
-  --font-size-caption: 11px;
-  --font-size-footnote: 12px;
-  --font-size-body: 13px;
-  --font-size-title: 15px;
+  --text-caption: 11px;
+  --text-footnote: 12px;
+  --text-body: 13px;
+  --text-title: 15px;
 
-  --line-height-caption: 1.25;
-  --line-height-footnote: 1.45;
-  --line-height-body: 1.45;
-  --line-height-title: 1.3;
+  --leading-caption: 1.25;
+  --leading-footnote: 1.45;
+  --leading-body: 1.45;
+  --leading-title: 1.3;
 
-  --letter-spacing-caption: 0.0825px;
-  --letter-spacing-footnote: 0.06px;
-  --letter-spacing-body: 0.065px;
-  --letter-spacing-title: 0px;
+  --tracking-caption: 0.0825px;
+  --tracking-footnote: 0.06px;
+  --tracking-body: 0.065px;
+  --tracking-title: 0px;
 
   /* === Shadows === */
   --shadow-button: 0px 1px 3px 0px #0000000a;
